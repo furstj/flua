@@ -14,8 +14,9 @@ homepage = "https://github.com/furstjir/flua"
    auto-executables = true
    auto-tests = true
    auto-examples = true
-   module-naming = true
-
+   module-naming = false
+   link = ["luajit-5.1"]
+   
 [fortran]
    implicit-typing = false
    implicit-external = false

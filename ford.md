@@ -1,16 +1,15 @@
 ---
 src_dir: src
-         app
          example
          test
 output_dir: docs/fpm-ford
-project: easy
-summary: easy project
-project_github: https://github.com/johndoe/easy
+project: flua
+summary: Fortran Lua wrapper
+project_github: https://github.com/furstjir/flua
 project_download:
-author: John Doe
-author_email: johndoe@gmail.com
-github: https://github.com/johndoe/easy
+author: Jiri Furst
+author_email: jiri.furst@gmail.com
+github: https://github.com/furstjir/flua
 media_dir: docs/images
 exclude_dir: archive
              FODDER
@@ -21,8 +20,7 @@ proc_internals: true
 sort: permission-alpha
 favicon: docs/images/favicon.ico
 print_creation_date: true
-extra_mods: iso_fortran_env:https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html
-            tomlf:https://toml-f.github.io/toml-f
+extra_mods: iso_fortran_env:https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_005fBINDING.html
 creation_date: %Y-%m-%d %H:%M %z
 md_extensions: markdown.extensions.toc
                markdown.extensions.smarty
