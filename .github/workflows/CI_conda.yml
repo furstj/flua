@@ -252,6 +252,6 @@ jobs:
         with:
           update-readme-table: true
           update-readme-token: ${{ secrets.GH_PAT }}   # Update with your GitHub personal access token
-          update-readme-user-name: "John S. Urban" # Update with your name
-          update-readme-user-email: "urbanjost@proton.me"  # Update with your email
+          update-readme-user-name: "Jiri Furst" # Update with your name
+          update-readme-user-email: "jiri.furst@gmail.com"  # Update with your email
 ################################################################################
