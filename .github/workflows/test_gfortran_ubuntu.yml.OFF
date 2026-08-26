@@ -8,9 +8,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest ]
+        os: [ubuntu-24.04 ]
         include:
-        - os: ubuntu-latest
+        - os: ubuntu-24.04
           gcc_v: 13
 
     env:
@@ -33,10 +33,11 @@ jobs:
            echo $PATH
            pwd
            uname -a
-           wget https://github.com/fortran-lang/fpm/releases/download/v0.13.0/fpm-0.13.0.F90
-           mkdir -p /home/runner/.local/bin
+           wget https://raw.githubusercontent.com/furstj/flua/refs/heads/main/bootstrap/fpm.F90
+           mkdir -p /home/runner/.local/bin tmp
            ulimit -c unlimited -d unlimited -f unlimited -m unlimited -s unlimited -t unlimited -v unlimited -x unlimited
-           gfortran fpm-0.13.0.F90 -static -o /home/runner/.local/bin/fpm
+           gfortran fpm.F90 -Itmp -Jtmp -static -o /home/runner/.local/bin/fpm
+           rm -f tmp/*.mod
            ls -l
 
     - name: Display environment
