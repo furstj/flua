@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="easy project">
-    <meta name="author" content="John Doe" >
+      <meta name="description" content="Fortran Lua wrapper">
+    <meta name="author" content="Jiri Furst" >
     <link rel="icon" href="../favicon.png">
 
-    <title>easy__sample &ndash; easy</title>
+    <title>lua_pcall &ndash; flua</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -44,7 +44,7 @@
     <div class="container-fluid mb-sm-4 mb-xl-2">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="../index.html">easy </a>
+          <a class="navbar-brand" href="../index.html">flua </a>
           <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
                   aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon">
@@ -62,7 +62,7 @@
                   <a class="nav-link" href="../lists/procedures.html">Procedures</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                  <a class="nav-link" href="../program/test_flua.html">Program</a>
                 </li>
             </ul>
               <div class="d-flex align-items-end flex-grow-1">
@@ -77,8 +77,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>easy__sample
-      <small>Module</small>
+    <h1>lua_pcall
+      <small>Interface</small>
       
     </h1>
       <div class="container p-2 mb-4 bg-light border rounded-3">
@@ -88,20 +88,21 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="65.4% of total for modules and submodules.">17 statements</a>
+                 title=" 5.6% of total for procedures.">79 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/easy__sample.f90"> Source File</a>
+              <a href="../src/flua.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/easy__sample.f90.html'>easy__sample.f90</a></li>
-            <li class="breadcrumb-item active" aria-current="page">easy__sample</li>
+                <li class="breadcrumb-item"><a href='../sourcefile/flua.f90.html'>flua.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/flua.html'>flua</a></li>
+            <li class="breadcrumb-item active" aria-current="page">lua_pcall</li>
           </ol>
         </nav>
       </div>
@@ -116,10 +117,10 @@
   </script>
 
   </div>
-
+  
   <div class="row">
-    <div class="col-md-3">
-        <div id="sidebar">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
       <h3>Contents</h3>
   
   
@@ -132,19 +133,7 @@
   
   
   
-      <div class="card mb-4">
-      <a data-bs-toggle="collapse" href="#funcs-0"
-         aria-expanded="false" aria-controls="funcs-0">
-         <h4 class="card-header bg-primary text-white">Functions</h4>
-      </a>
-      <div id="funcs-0" class="collapse">
-        <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../module/easy__sample.html#proc-mysin">mysin</a>
-            <a class="list-group-item" href="../module/easy__sample.html#proc-mysqrt">mysqrt</a>
-        </div>
-      </div>
-    </div>
-
+  
   
   
   
@@ -154,34 +143,21 @@
   
   
 
+    <em>None</em>
 
   </div>
 
     </div>
-
+    
     <div class="col-md-9" id='text'>
-      
-      
-      
-      <br>
+      <h2>interface <br>
+      public  function lua_pcall(L, nargs, nresults, errfunc) result(ier) bind(C,name="lua_pcall")  
+</h2>    
 
+    
 
-
-
-
-
-
-        <section>
-          <h2>Functions</h2>
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mysin"></span> <h3>public pure elemental function <a href='../proc/mysin.html'>mysin</a>(r) result(answer)  
-</h3></div>
-    <div class="card-body">
-          
-  
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
     <thead>
       <tr>
         <th scope="col">Type</th>
@@ -193,84 +169,75 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-r~2"></span>
-              real,
+              <span class="anchor" id="variable-l"></span>
+              type(c_ptr),
             </td>
-<td>intent(in)</td>
+<td></td>
               <td></td>            <td>
-              
+              value
             </td>
             <td>::</td>
-            <td><strong>r</strong></td>
+            <td><strong>L</strong></td>
             <td>
-<p>MYSIN(3f) is a trivial function for demonstration purposes.</p>
+                <p>Lua state</p>
             </td>
         </tr>
-    </tbody>
-  </table>
-
-    <h4>
-    Return Value
-    <small>real</small>
-    </h4>
-    
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mysqrt"></span> <h3>public pure elemental function <a href='../proc/mysqrt.html'>mysqrt</a>(r) result(answer)  
-</h3></div>
-    <div class="card-body">
-          
-  
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-r"></span>
-              real,
+              <span class="anchor" id="variable-nargs"></span>
+              integer(kind=c_int),
             </td>
-<td>intent(in)</td>
+<td></td>
               <td></td>            <td>
-              
+              value
             </td>
             <td>::</td>
-            <td><strong>r</strong></td>
+            <td><strong>nargs</strong></td>
             <td>
-<p>MYSQRT(3f) is a trivial function for demonstration purposes.</p>
+                <p>Number of arguments</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nresults"></span>
+              integer(kind=c_int),
+            </td>
+<td></td>
+              <td></td>            <td>
+              value
+            </td>
+            <td>::</td>
+            <td><strong>nresults</strong></td>
+            <td>
+                <p>Number of results</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-errfunc"></span>
+              integer(kind=c_int),
+            </td>
+<td></td>
+              <td></td>            <td>
+              value
+            </td>
+            <td>::</td>
+            <td><strong>errfunc</strong></td>
+            <td>
+                <p>Error handler index</p>
             </td>
         </tr>
     </tbody>
   </table>
 
-    <h4>
-    Return Value
-    <small>real</small>
-    </h4>
-    
+      <h3>Return Value <span class="anchor" id="variable-ier"></span><small>integer(kind=c_int)</small></h3>
+    <p>Return code (0 = success)</p>
+    <h3>Description</h3>
+    <p>Lua C-API function: protected call a function</p>
+    <br>
 
-    </div>
-  </div>
-
-        </section>
-        <br>
-
-
-
-
-    </div>
-  </div>
+ </div>
+</div>
 
       <hr>
     </div> <!-- /container -->
@@ -279,15 +246,15 @@
         <div class="row justify-content-between">
           <div class="col">
             <p>
-              easy
- was developed by John Doe<br>              &copy; 2026 
+              flua
+ was developed by Jiri Furst<br>              &copy; 2026 
 </p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2026-08-26 09:39 +0000             </p>
+ on 2026-08-26 11:45 +0000             </p>
           </div>
         </div>
         <br>
