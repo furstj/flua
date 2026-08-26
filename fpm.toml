@@ -16,6 +16,7 @@ homepage = "https://github.com/furstjir/flua"
    auto-examples = true
    module-naming = false
    link = ["luajit-5.1"]
+   preprocessor = "cpp"
    
 [fortran]
    implicit-typing = false
