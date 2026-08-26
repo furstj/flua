@@ -44,6 +44,8 @@ jobs:
       run: |
         sudo apt-get install ${{ env.APT_PACKAGES }}
         source /opt/intel/oneapi/setvars.sh
+        export PATH="/opt/intel/oneapi/compiler/latest/bin:$PATH"
+        export LD_LIBRARY_PATH="/opt/intel/oneapi/compiler/latest/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         printenv >> $GITHUB_ENV
 
     - name: Install fpm
