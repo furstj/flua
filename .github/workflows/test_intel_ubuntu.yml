@@ -44,6 +44,13 @@ jobs:
       run: |
         sudo apt-get install ${{ env.APT_PACKAGES }}
         source /opt/intel/oneapi/setvars.sh
+        if ! command -v ifort >/dev/null 2>&1 && command -v ifx >/dev/null 2>&1; then
+          echo "FC=ifx" >> "$GITHUB_ENV"
+          echo "FPM_COMPILER=ifx" >> "$GITHUB_ENV"
+        fi
+        if ! command -v icc >/dev/null 2>&1 && command -v icx >/dev/null 2>&1; then
+          echo "CC=icx" >> "$GITHUB_ENV"
+        fi
         printenv >> $GITHUB_ENV
 
     - name: Install fpm
@@ -54,7 +61,7 @@ jobs:
            wget https://github.com/fortran-lang/fpm/releases/download/v0.13.0/fpm-0.13.0.F90
            mkdir -p /home/runner/.local/bin tmp
            ulimit -c unlimited -d unlimited -f unlimited -m unlimited -s unlimited -t unlimited -v unlimited -x unlimited
-           ifort fpm-0.13.0.F90 -Itmp -module tmp -o /home/runner/.local/bin/fpm
+           ${FC} fpm-0.13.0.F90 -Itmp -module tmp -o /home/runner/.local/bin/fpm
            ls -l
            rm -fv *.mod tmp/*.mod
 
@@ -64,7 +71,7 @@ jobs:
         printenv FPM_COMPILER
         printenv OMP_NUM_THREADS
         ulimit -c unlimited -d unlimited -f unlimited -m unlimited -s unlimited -t unlimited -v unlimited -x unlimited
-        fpm test --profile release --compiler ifort
+        fpm test --profile release --compiler "${FPM_COMPILER}"
         ls -l
       env:
         OMP_NUM_THREADS: 2,1
