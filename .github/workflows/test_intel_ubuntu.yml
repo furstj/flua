@@ -10,13 +10,13 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        fc: [ifort]
-        cc: [icc]
+        fc: [ifx]
+        cc: [icx]
 
     env:
       FC: ${{ matrix.fc }}
       CC: ${{ matrix.cc }}
-      FPM_COMPILER: ifort
+      FPM_COMPILER: ifx
       TZ: UTC+04:00
       APT_PACKAGES: >-
         intel-oneapi-compiler-fortran
@@ -44,13 +44,6 @@ jobs:
       run: |
         sudo apt-get install ${{ env.APT_PACKAGES }}
         source /opt/intel/oneapi/setvars.sh
-        if ! command -v ifort >/dev/null 2>&1 && command -v ifx >/dev/null 2>&1; then
-          echo "FC=ifx" >> "$GITHUB_ENV"
-          echo "FPM_COMPILER=ifx" >> "$GITHUB_ENV"
-        fi
-        if ! command -v icc >/dev/null 2>&1 && command -v icx >/dev/null 2>&1; then
-          echo "CC=icx" >> "$GITHUB_ENV"
-        fi
         printenv >> $GITHUB_ENV
 
     - name: Install fpm
