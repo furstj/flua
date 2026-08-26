@@ -39,6 +39,14 @@ jobs:
           sudo ln -f -s ${GFORTRAN_BIN} /usr/local/bin/gfortran
           which gfortran
 
+    - name: Install LuaJIT
+      run: |
+          brew install luajit
+          LUAJIT_PREFIX=$(brew --prefix luajit)
+          echo "LIBRARY_PATH=${LUAJIT_PREFIX}/lib${LIBRARY_PATH:+:${LIBRARY_PATH}}" >> "$GITHUB_ENV"
+          echo "CPATH=${LUAJIT_PREFIX}/include/luajit-2.1${CPATH:+:${CPATH}}" >> "$GITHUB_ENV"
+          echo "PKG_CONFIG_PATH=${LUAJIT_PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}" >> "$GITHUB_ENV"
+
     - name: Install fpm
       run: |
            wget https://github.com/fortran-lang/fpm/releases/download/v0.9.0/fpm-0.9.0.F90
