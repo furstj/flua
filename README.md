@@ -1,6 +1,7 @@
 # Fortran interface to Lua 
 
-![selfy](docs/images/selfy.gif)
+[![ubuntu with gfortran](https://github.com/furstj/flua/actions/workflows/test_gfortran_ubuntu.yml/badge.svg)](https://github.com/furstj/flua/actions/workflows/test_gfortran_ubuntu.yml)
+
 ## [CHANGELOG](docs/CHANGELOG.md) and BUILD ACTION [STATUS](docs/STATUS.md)
 ---
 
