@@ -1,45 +1,28 @@
 # TOML file for fpm as described at https://fpm.fortran-lang.org/en/spec/manifest.html
-name = "easy"
+name = "flua"
 version = "0.1.0"
-license = "license"
-author = "Jane Doe"
-maintainer = "jane.doe@example.com"
-copyright = "Copyright 2021, Jane Doe"
-description = ""
+license = "MIT"
+author = "Jiri Furst"
+maintainer = "jiri.furst@gmail.com"
+copyright = "Copyright 2026, Jiri Furst"
+description = "Fortran 95 interface to Lua (luajit-5.1)"
 categories = [""]
 keywords = ["fortran", "fortran-package-manager"]
-homepage = "https://github.com/janedoe/easy"
+homepage = "https://github.com/furstjir/flua"
 
 [build]
    auto-executables = true
    auto-tests = true
    auto-examples = true
-   # new default with v0.8.0
-   # force module naming rules to avoid collisions with other packages
-   #module-naming = true
-   # traditional where user can use any module name
-   module-naming = false
+   module-naming = true
 
-# new section with v0.8.0
 [fortran]
-   #implicit-typing = false
-   #implicit-external = false
-   #source-form = "free"
-   # traditional pre-version8 compatibility
-   implicit-typing = true
-   implicit-external = true
-   source-form = "default"
+   implicit-typing = false
+   implicit-external = false
+   source-form = "free"
 
 [install]
    library = false
 
-# example
-#[[test]]
-#name="runTests"
-#source-dir="test"
-#main="test_suite_easy.f90"
-#[test.dependencies]
-##M_framework = { git = "https://github.com/urbanjost/M_framework.git" }
-
-#[dev-dependencies]
-#M_framework = { git = "https://github.com/urbanjost/M_framework.git" }
+[dev-dependencies]
+   test-drive = {git = "https://github.com/fortran-lang/test-drive" }
