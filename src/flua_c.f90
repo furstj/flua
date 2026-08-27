@@ -6,6 +6,12 @@ module flua_c
    !!
    !! The handle to the Lua state is represented as a C pointer (c_ptr) in Fortran.
    !! For more information on the Lua C API, refer to the official [Lua manual](https://www.lua.org/manual/5.1/manual.html)
+   !!
+   !! @note
+   !! This module targets the **Lua 5.1 API** on purpose, for compatibility
+   !! with LuaJIT. Do not use functions introduced in Lua 5.2+ (e.g. `lua_rawlen`,
+   !! `luaL_len`); use their 5.1 counterparts instead (e.g. `lua_objlen`).
+   !! @endnote
 
    use iso_c_binding
 
