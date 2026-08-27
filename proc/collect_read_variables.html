@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +8,7 @@
     <meta name="author" content="Jiri Furst" >
     <link rel="icon" href="../favicon.png">
 
-    <title>lua_settop &ndash; flua</title>
+    <title>collect_read_variables &ndash; flua</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -77,8 +76,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>lua_settop
-   <small>Interface</small>
+    <h1>collect_read_variables
+      <small>Subroutine</small>
     </h1>
     <div class="row">
   <div class="col-lg-12">
@@ -87,14 +86,14 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 5.1% of total for procedures.">79 statements</a>
+    title=" 0.3% of total for procedures.">5 statements</a>
      </li> 
-    <li><i class="fa fa-code"></i><a href="../src/flua_c.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/test_flua_c.f90"> Source File</a></li>
   </ul>
   <ol class="breadcrumb in-well text-right">
-     <li><a href='../sourcefile/flua_c.f90.html'>flua_c.f90</a></li>
-     <li><a href='../module/flua_c.html'>flua_c</a></li>
-     <li class="active">lua_settop</li>
+     <li><a href='../sourcefile/test_flua_c.f90.html'>test_flua_c.f90</a></li>
+     <li><a href='../program/test_flua_c.html'>test_flua_c</a></li>
+     <li class="active">collect_read_variables</li>
   </ol>
 </div>
 </div>
@@ -112,44 +111,92 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/collect_read_variables.html#src">collect_read_variables</a>
+  </div>
+</div>
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-      <h2>interface <br>
-      public subroutine lua_settop(L, index) bind(C,name="0")</h2>    
+    <h2>subroutine collect_read_variables(testsuite)</h2>
+        <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
+      <li class="list-group-item">
+  <ul class="list-inline">
+    <li>testdrive</li>
+  </ul>
+      </li>
+      </ul>
+    </div>
 
-    
+
 
     <h3>Arguments</h3>
       <table class="table table-striped varlist">
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-l~36"></span>type(c_ptr),</td>
-<td></td>
-  <td></td>  <td>value</td><td>::</td>
-  <td><strong>L</strong></td><td><p>Lua state</p></td>
-</tr>
-<tr>
-  <td><span class="anchor" id="variable-index~13"></span>integer(kind=c_int),</td>
-<td></td>
-  <td></td>  <td>value</td><td>::</td>
-  <td><strong>index</strong></td><td><p>New stack top index</p></td>
+  <td><span class="anchor" id="variable-testsuite~3"></span>type(unittest_type),</td>
+<td>intent(out),</td>
+  <td></td>  <td>allocatable</td><td>::</td>
+  <td><strong>testsuite</strong>(:)</td><td></td>
 </tr>
 </tbody>
 </table>
 
-    <h3>Description</h3>
-    <p>Lua C-API function: set the stack top</p>
-<p>For more information, see the <a href="|manual|#lua_settop">Lua manual</a></p>
     <br>
 
- </div>
+    <section class="visible-xs visible-sm hidden-md">
+      <h3>Contents</h3>
+ 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/collect_read_variables.html#src">collect_read_variables</a>
+  </div>
 </div>
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+
+    
+    
+
+    
+    
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="n">collect_read_variables</span><span class="p">(</span><span class="n">testsuite</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">use </span><span class="n">testdrive</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">new_unittest</span><span class="p">,</span><span class="w"> </span><span class="n">unittest_type</span><span class="w"></span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">unittest_type</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">testsuite</span><span class="p">(:)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">testsuite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">new_unittest</span><span class="p">(</span><span class="s2">&quot;lua_getglobal - number&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">test_getglobal_number</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">new_unittest</span><span class="p">(</span><span class="s2">&quot;lua_getglobal - string&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">test_getglobal_string</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">new_unittest</span><span class="p">(</span><span class="s2">&quot;lua_getglobal - boolean&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">test_getglobal_boolean</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">new_unittest</span><span class="p">(</span><span class="s2">&quot;lua_getglobal - array&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">test_getglobal_array</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="p">]</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">end subroutine </span><span class="n">collect_read_variables</span><span class="w"></span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
 
     <hr>    
     </div> <!-- /container -->

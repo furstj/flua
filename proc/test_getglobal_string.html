@@ -8,7 +8,7 @@
     <meta name="author" content="Jiri Furst" >
     <link rel="icon" href="../favicon.png">
 
-    <title>test_luaL_newstate &ndash; flua</title>
+    <title>test_getglobal_string &ndash; flua</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -76,7 +76,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>test_luaL_newstate
+    <h1>test_getglobal_string
       <small>Subroutine</small>
     </h1>
     <div class="row">
@@ -86,14 +86,14 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.8% of total for procedures.">12 statements</a>
+    title=" 1.5% of total for procedures.">23 statements</a>
      </li> 
     <li><i class="fa fa-code"></i><a href="../src/test_flua_c.f90"> Source File</a></li>
   </ul>
   <ol class="breadcrumb in-well text-right">
      <li><a href='../sourcefile/test_flua_c.f90.html'>test_flua_c.f90</a></li>
      <li><a href='../program/test_flua_c.html'>test_flua_c</a></li>
-     <li class="active">test_luaL_newstate</li>
+     <li class="active">test_getglobal_string</li>
   </ol>
 </div>
 </div>
@@ -115,14 +115,15 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
   <div id="vars-0" class="panel-collapse collapse">
     <div class="list-group">
-      <a class="list-group-item" href="../proc/test_lual_newstate.html#variable-l~46">L</a>
+      <a class="list-group-item" href="../proc/test_getglobal_string.html#variable-l~44">L</a>
+      <a class="list-group-item" href="../proc/test_getglobal_string.html#variable-s~2">s</a>
     </div>
   </div>
 </div>
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/test_lual_newstate.html#src">test_luaL_newstate</a>
+    <a class="list-group-item" href="../proc/test_getglobal_string.html#src">test_getglobal_string</a>
   </div>
 </div>
 
@@ -131,7 +132,7 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>subroutine test_luaL_newstate(error)</h2>
+    <h2>subroutine test_getglobal_string(error)</h2>
         <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Uses</h3>
@@ -153,7 +154,7 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-error~7"></span>type(error_type),</td>
+  <td><span class="anchor" id="variable-error~5"></span>type(error_type),</td>
 <td>intent(out),</td>
   <td></td>  <td>allocatable</td><td>::</td>
   <td><strong>error</strong></td><td></td>
@@ -170,14 +171,15 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
   <div id="vars-1" class="panel-collapse collapse">
     <div class="list-group">
-      <a class="list-group-item" href="../proc/test_lual_newstate.html#variable-l~46">L</a>
+      <a class="list-group-item" href="../proc/test_getglobal_string.html#variable-l~44">L</a>
+      <a class="list-group-item" href="../proc/test_getglobal_string.html#variable-s~2">s</a>
     </div>
   </div>
 </div>
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/test_lual_newstate.html#src">test_luaL_newstate</a>
+    <a class="list-group-item" href="../proc/test_getglobal_string.html#src">test_getglobal_string</a>
   </div>
 </div>
 
@@ -191,9 +193,14 @@
 <thead><tr><th>Type</th><th>Visibility</th><th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-l~46"></span>type(c_ptr),</td>
+  <td><span class="anchor" id="variable-l~44"></span>type(c_ptr),</td>
 <td>public</td>  <td></td><td>::</td>
   <td><strong>L</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-s~2"></span>character(len=32),</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>s</strong></td><td></td><td></td><td></td>
 </tr>
 </tbody>
 </table>
@@ -210,19 +217,33 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="n">test_luaL_newstate</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">use </span><span class="n">flua_c</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">luaL_newstate</span><span class="p">,</span><span class="w"> </span><span class="n">lua_close</span><span class="w"></span>
-<span class="w">      </span><span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="kt">c_ptr</span><span class="p">,</span><span class="w"> </span><span class="nb">c_associated</span>
+    <div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="n">test_getglobal_string</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">use </span><span class="n">flua_c</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">lua_getglobal</span><span class="p">,</span><span class="w"> </span><span class="n">lua_isstring</span><span class="p">,</span><span class="w"> </span><span class="n">lua_tostring</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="n">lua_settop</span><span class="p">,</span><span class="w"> </span><span class="n">lua_close</span><span class="w"></span>
+<span class="w">      </span><span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">c_ptr</span><span class="p">,</span><span class="w"> </span><span class="nb">c_associated</span>
 <span class="nb">      </span><span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">error</span><span class="w"></span>
-<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">L</span><span class="w"></span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">L</span><span class="w"></span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s</span><span class="w"></span>
 
-<span class="w">      </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">luaL_newstate</span><span class="p">()</span><span class="w"></span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">(</span><span class="n">L</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">         call </span><span class="n">check</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.,</span><span class="w"> </span><span class="s2">&quot;Failed to create Lua state&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="s2">&quot;test/data.lua&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">(</span><span class="n">L</span><span class="p">))</span><span class="w"> </span><span class="k">return</span>
+
+<span class="k">      call </span><span class="n">lua_getglobal</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="w"> </span><span class="n">lua_isstring</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         call </span><span class="n">check</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.,</span><span class="w"> </span><span class="s2">&quot;text is not a string&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">lua_close</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="w"></span>
 <span class="w">         </span><span class="k">return</span>
 <span class="k">      end if</span>
-<span class="k">      call </span><span class="n">lua_close</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">end subroutine </span><span class="n">test_luaL_newstate</span><span class="w"></span>
+<span class="k">      </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lua_tostring</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         call </span><span class="n">check</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.,</span><span class="w"> </span><span class="s2">&quot;text /= &#39;Hello world!&#39;&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">lua_close</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">return</span>
+<span class="k">      end if</span>
+
+<span class="k">      call </span><span class="n">lua_settop</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">call </span><span class="n">lua_close</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">end subroutine </span><span class="n">test_getglobal_string</span><span class="w"></span>
 </pre></div>
 
     </section>
