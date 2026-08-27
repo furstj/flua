@@ -28,5 +28,4 @@ homepage = "https://github.com/furstjir/flua"
 [dev-dependencies]
    test-drive = {git = "https://github.com/fortran-lang/test-drive" }
 
-[extra.ford.alias]
-manual = "https://www.lua.org/manual/5.1/manual.html"
+

@@ -7,10 +7,8 @@ src_dir: src
          example
          test
 output_dir: docs/api
-github: https://github.com/furstjir/flua
-website: https://github.com/furstjir/flua
-project_download:
-github: https://github.com/furstjir/flua
+github: https://github.com/furstj
+project_github: https://github.com/furstj/flua
 media_dir: docs/images
 exclude_dir: archive
              FODDER
@@ -25,6 +23,8 @@ extra_mods: iso_fortran_env:https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fC_00
 creation_date: %Y-%m-%d %H:%M %z
 md_extensions: markdown.extensions.toc
                markdown.extensions.smarty
+alias: manual=https://www.lua.org/manual/5.1/manual.html
+
 ---
 
 {!README.md!}
