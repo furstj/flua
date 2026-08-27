@@ -1,6 +1,9 @@
 module flua_f95
 
-   !! Fortran 95 api for flua module
+   !! Fortran 95 api for flua library
+   !!
+   !! This module provides a Fortran 95 helpers for the flua library.
+   !! It contains functions for creating and managing Lua states, executing Lua code, and interacting with Lua variables.
 
    use iso_c_binding
    use flua_c            !! Lua C-API bindings

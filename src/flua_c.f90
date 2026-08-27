@@ -1,5 +1,12 @@
 module flua_c
 
+   !! Fortran wrapper to the Lua scripting language [http://www.lua.org/](http://www.lua.org/)
+   !!
+   !! This module provides Fortran bindings to the Lua C API, allowing Fortran programs to interact with Lua scripts and manage Lua states.
+   !!
+   !! The handle to the Lua state is represented as a C pointer (c_ptr) in Fortran.
+   !! For more information on the Lua C API, refer to the official [Lua manual](https://www.lua.org/manual/5.1/manual.html)
+
    use iso_c_binding
 
    implicit none
@@ -40,17 +47,21 @@ module flua_c
       function lua_pcall(L, nargs, nresults, errfunc) result(ier) &
          bind(C,name="lua_pcall")
          !! Lua C-API function: protected call a function
-         use iso_c_binding
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_pcall)
+         import :: c_ptr, c_int
          type(c_ptr), value      :: L        !! Lua state
          integer(c_int), value   :: nargs    !! Number of arguments
          integer(c_int), value   :: nresults !! Number of results
          integer(c_int), value   :: errfunc  !! Error handler index
-         integer(c_int)          :: ier      !! Return code (0 = success)
+         integer(c_int)          :: ier      !! Return code (0 = success, non-zero = error)
       end function lua_pcall
 
 
       subroutine lua_close(L) bind(C,name="lua_close")
          !! Lua C-API function: close a Lua state
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_close)
          use iso_c_binding
          type(c_ptr), value      :: L       !! Lua state
       end subroutine lua_close
@@ -58,6 +69,8 @@ module flua_c
 
       subroutine lua_settop(L, index) bind(C,name="lua_settop")
          !! Lua C-API function: set the stack top
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_settop)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int), value  :: index    !! New stack top index
@@ -66,6 +79,8 @@ module flua_c
 
       function lua_gettop(L) result(n) bind(C,name="lua_gettop")
          !! Lua C-API function: get the stack top
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_gettop)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int)         :: n        !! Stack top index
@@ -74,6 +89,8 @@ module flua_c
 
       function lua_type(L, index) result(n) bind(C,name="lua_type")
          !! Lua C-API function: get the type of a value on the stack
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_type)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int), value  :: index    !! Stack index
@@ -83,6 +100,8 @@ module flua_c
 
       subroutine lua_pushnumber(L, n) bind(C,name="lua_pushnumber")
          !! Lua C-API function: push a number onto the stack
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_pushnumber)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          real(C_DOUBLE), value  :: n        !! Number to push
@@ -91,6 +110,8 @@ module flua_c
 
       function lua_tonumber(L, index) result(n) bind(C,name="lua_tonumber")
          !! Lua C-API function: convert a value to a number
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_tonumber)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int), value  :: index    !! Stack index
@@ -100,6 +121,8 @@ module flua_c
 
       subroutine lua_pushinteger(L, n) bind(C,name="lua_pushinteger")
          !! Lua C-API function: push an integer onto the stack
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_pushinteger)
          use iso_c_binding
          type(c_ptr), value       :: L      !! Lua state
          integer(c_int), value    :: n      !! Integer to push
@@ -108,6 +131,8 @@ module flua_c
 
       function lua_tointeger(L, index) result(n) bind(C,name="lua_tointeger")
          !! Lua C-API function: convert a value to an integer
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_tointeger)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int), value  :: index    !! Stack index
@@ -117,6 +142,8 @@ module flua_c
 
       subroutine lua_createtable(L, narr, nrec) bind(C,name="lua_createtable")
          !! Lua C-API function: create a new table
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_createtable)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int), value  :: narr     !! Expected array elements
@@ -126,6 +153,8 @@ module flua_c
 
       subroutine lua_settable(L, index) bind(C,name="lua_settable")
          !! Lua C-API function: set a value in a table
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_settable)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int), value  :: index    !! Table index
@@ -134,6 +163,8 @@ module flua_c
 
       subroutine lua_gettable(L, index) bind(C,name="lua_gettable")
          !! Lua C-API function: get a value from a table
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_gettable)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int), value  :: index    !! Table index
@@ -142,6 +173,8 @@ module flua_c
 
       function lua_error(L) result(n) bind(C,name="lua_error")
          !! Lua C-API function: raise an error
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_error)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int)         :: n        !! Error code
@@ -150,6 +183,8 @@ module flua_c
 
       function lua_objlen(L, index) result(n) bind(C,name="lua_objlen")
          !! Lua C-API function: get the length of an object
+         !!
+         !! For more information, see the [Lua manual](|manual|#lua_objlen)
          use iso_c_binding
          type(c_ptr), value     :: L        !! Lua state
          integer(c_int), value  :: index    !! Stack index
@@ -173,6 +208,8 @@ module flua_c
 
       function luaL_newstate() result(L) bind(C,name="luaL_newstate")
          !! Lua auxiliary function: create a new Lua state
+         !!
+         !! For more information, see the [Lua manual](|manual|#luaL_newstate)
          use iso_c_binding
          type(c_ptr) :: L           !! Lua state pointer
       end function luaL_newstate
@@ -180,6 +217,8 @@ module flua_c
 
       subroutine luaL_openlibs(L) bind(C,name="luaL_openlibs")
          !! Lua auxiliary function: open all standard libraries
+         !!
+         !! For more information, see the [Lua manual](|manual|#luaL_openlibs)
          use iso_c_binding
          type(c_ptr), value :: L    !! Lua state
       end subroutine luaL_openlibs
@@ -187,12 +226,14 @@ module flua_c
    end interface
 
 
-   contains
-      !======================================================================
+contains
+   !======================================================================
    ! Lua C-API
    !======================================================================
    subroutine lua_getfield(L, index, name)
       !! Get a field value from a table
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_getfield)
       type(c_ptr)                  :: L       !! Lua state
       integer(c_int), intent(in)   :: index   !! Table index on stack
       character(len=*), intent(in) :: name    !! Field name
@@ -212,6 +253,8 @@ module flua_c
 
    subroutine lua_setfield(L, index, name)
       !! Set a field value in a table
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_setfield)
       type(c_ptr)                  :: L       !! Lua state
       integer(c_int), intent(in)   :: index   !! Table index on stack
       character(len=*), intent(in) :: name    !! Field name
@@ -231,6 +274,8 @@ module flua_c
 
    subroutine lua_getglobal(L, name)
       !! Get a global variable
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_getglobal)
       type(c_ptr)                  :: L       !! Lua state
       character(len=*), intent(in) :: name    !! Global variable name
 
@@ -240,6 +285,8 @@ module flua_c
 
    subroutine lua_setglobal(L, name)
       !! Set a global variable
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_setglobal)
       type(c_ptr)                  :: L       !! Lua state
       character(len=*), intent(in) :: name    !! Global variable name
 
@@ -249,6 +296,11 @@ module flua_c
 
    function lua_isnil(L, index) result(n)
       !! Check if value at index is nil
+      !!
+      !! No direct counterpart in the Lua C-API; uses a call to `lua_type`
+      !! and compares the result with the corresponding type constant.
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_type)
       type(c_ptr)                  :: L       !! Lua state
       integer(c_int), intent(in)   :: index   !! Stack index
       logical                      :: n       !! True if nil
@@ -259,6 +311,11 @@ module flua_c
 
    function lua_isnumber(L, index) result(n)
       !! Check if value at index is a number
+      !!
+      !! No direct counterpart in the Lua C-API; uses a call to `lua_type`
+      !! and compares the result with the corresponding type constant.
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_type)
       type(c_ptr)                  :: L       !! Lua state
       integer(c_int), intent(in)   :: index   !! Stack index
       logical                      :: n       !! True if number
@@ -269,6 +326,11 @@ module flua_c
 
    function lua_istable(L, index) result(n)
       !! Check if value at index is a table
+      !!
+      !! No direct counterpart in the Lua C-API; uses a call to `lua_type`
+      !! and compares the result with the corresponding type constant.
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_type)
       type(c_ptr)                  :: L       !! Lua state
       integer(c_int), intent(in)   :: index   !! Stack index
       logical                      :: n       !! True if table
@@ -279,6 +341,11 @@ module flua_c
 
    function lua_isstring(L, index) result(n)
       !! Check if value at index is a string
+      !!
+      !! No direct counterpart in the Lua C-API; uses a call to `lua_type`
+      !! and compares the result with the corresponding type constant.
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_type)
       type(c_ptr)                  :: L       !! Lua state
       integer(c_int), intent(in)   :: index   !! Stack index
       logical                      :: n       !! True if string
@@ -289,6 +356,11 @@ module flua_c
 
    function lua_isboolean(L, index) result(n)
       !! Check if value at index is a boolean
+      !!
+      !! No direct counterpart in the Lua C-API; uses a call to `lua_type`
+      !! and compares the result with the corresponding type constant.
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_type)
       type(c_ptr)                  :: L       !! Lua state
       integer(c_int), intent(in)   :: index   !! Stack index
       logical                      :: n       !! True if boolean
@@ -299,6 +371,11 @@ module flua_c
 
    subroutine lua_newtable(L)
       !! Create a new empty table
+      !!
+      !! No direct counterpart in the Lua C-API; a convenience wrapper
+      !! around `lua_createtable(L,0,0)`.
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_createtable)
       type(c_ptr)               :: L           !! Lua state
 
       call lua_createtable(L,0,0)
@@ -307,6 +384,8 @@ module flua_c
 
    function lua_toboolean(L, index) result(n)
       !! Convert a value to boolean
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_toboolean)
       type(c_ptr)            :: L              !! Lua state
       integer(c_int)         :: index          !! Stack index
       logical                :: n              !! Boolean value
@@ -326,6 +405,8 @@ module flua_c
 
    subroutine lua_pushboolean(L, n)
       !! Push a boolean value onto the stack
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_pushboolean)
       type(c_ptr)               :: L           !! Lua state
       logical                   :: n           !! Boolean value to push
 
@@ -347,6 +428,8 @@ module flua_c
 
    subroutine lua_pushstring(L, string)
       !! Push a string onto the stack
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_pushstring)
       type(c_ptr)                :: L         !! Lua state
       character(len=*)           :: string    !! String to push
 
@@ -363,7 +446,9 @@ module flua_c
 
 
    function lua_tostring(L, index, len) result(s)
-      !! Convert a value to a string
+      !! Convert a value to a fortran string
+      !!
+      !! For more information, see the [Lua manual](|manual|#lua_tolstring)
       type(c_ptr)                   :: L       !! Lua state
       integer(c_int)                :: index   !! Stack index
       integer(c_int)                :: len     !! Maximum string length
@@ -397,6 +482,8 @@ module flua_c
    !======================================================================
    function luaL_loadstring(L, string) result(ierr)
       !! Load a Lua chunk from a string
+      !!
+      !! For more information, see the [Lua manual](|manual|#luaL_loadstring)
       type(c_ptr)                  :: L       !! Lua state
       character(len=*), intent(in) :: string  !! Lua code to load
       integer(c_int)               :: ierr    !! Return code (0 = success)
@@ -417,6 +504,8 @@ module flua_c
 
    function luaL_loadfile(L, filename) result(ierr)
       !! Load a Lua chunk from a file
+      !!
+      !! For more information, see the [Lua manual](|manual|#luaL_loadfile)
       type(c_ptr)                  :: L        !! Lua state
       character(len=*), intent(in) :: filename !! File path to load
       integer(c_int)               :: ierr     !! Return code (0 = success)
@@ -437,6 +526,11 @@ module flua_c
 
    function luaL_dostring(L, string) result(ierr)
       !! Execute a Lua chunk from a string
+      !!
+      !! No direct counterpart in the Lua auxiliary library; combines
+      !! `luaL_loadstring` with `lua_pcall`.
+      !!
+      !! For more information, see the [Lua manual](|manual|#luaL_loadstring)
       type(c_ptr)                  :: L       !! Lua state
       character(len=*), intent(in) :: string  !! Lua code to execute
       integer(c_int)               :: ierr    !! Return code (0 = success)
@@ -448,6 +542,11 @@ module flua_c
 
    function luaL_dofile(L, filename) result(ierr)
       !! Execute a Lua chunk from a file
+      !!
+      !! No direct counterpart in the Lua auxiliary library; combines
+      !! `luaL_loadfile` with `lua_pcall`.
+      !!
+      !! For more information, see the [Lua manual](|manual|#luaL_loadfile)
       type(c_ptr)                  :: L        !! Lua state
       character(len=*), intent(in) :: filename !! File path to execute
       integer(c_int)               :: ierr     !! Return code (0 = success)

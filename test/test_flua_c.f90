@@ -1,8 +1,9 @@
-program test_flua
+program test_flua_c
 
    use testdrive, only : run_testsuite, new_testsuite, testsuite_type, error_type, check
    use iso_fortran_env, only : error_unit
-
+   use flua_c
+   
    implicit none
 
    integer :: stat, is
@@ -33,14 +34,13 @@ contains
       type(unittest_type), allocatable, intent(out) :: testsuite(:)
 
       testsuite = [ &
-         new_unittest("luaL_newstate", test_luaL_newstate), &
-         new_unittest("flua_newstate", test_flua_newstate) &
+         new_unittest("luaL_newstate", test_luaL_newstate) &
          ]
    end subroutine collect_new_state
 
 
    subroutine test_luaL_newstate(error)
-      use flua, only: luaL_newstate, lua_close
+      use flua_c, only: luaL_newstate, lua_close
       use iso_c_binding, only: c_ptr, c_associated
       type(error_type), allocatable, intent(out) :: error
       type(c_ptr) :: L
@@ -54,19 +54,5 @@ contains
    end subroutine test_luaL_newstate
 
 
-   subroutine test_flua_newstate(error)
-      use flua, only: flua_newstate, lua_close
-      use iso_c_binding, only: c_ptr, c_associated
-      type(error_type), allocatable, intent(out) :: error
-      type(c_ptr) :: L
 
-      L = flua_newstate()
-      if (.not. c_associated(L)) then
-         call check(error, .false., "Failed to create Lua state")
-         return
-      end if
-      call lua_close(L)
-   end subroutine test_flua_newstate
-
-
-end program test_flua
+end program test_flua_c

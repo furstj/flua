@@ -17,7 +17,6 @@ exclude_dir: archive
 display: public
          protected
 source: true
-preprocessor: gfortran -E
 proc_internals: true
 sort: permission-alpha
 favicon: docs/images/favicon.ico
